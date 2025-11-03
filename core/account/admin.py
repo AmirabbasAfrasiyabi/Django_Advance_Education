@@ -1,10 +1,11 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import User
-# Register your models here.
+
 
 class CustomUserAdmin(UserAdmin):
     model = User
+    # add_form = CustomUserCreationForm
     list_display = ("email" , "is_superuser" , "is_active")
     list_filter = ("email" , "is_superuser" , "is_active")
     search_fields = ("email",)
@@ -24,6 +25,17 @@ class CustomUserAdmin(UserAdmin):
             ),
         }),
 
+        ('group Permission', {
+            "fields": (
+                'groups', 'user_permissions'
+            ),
+        }),
+
+        ('important date', {
+            "fields": (
+                'last_login',
+            ),
+        }),
      )
     add_fieldsets = (
         ("Add New User", {
