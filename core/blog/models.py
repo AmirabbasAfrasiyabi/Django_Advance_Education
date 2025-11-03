@@ -1,9 +1,9 @@
 from django.db import models
-
+from django.conf import settings  # ADD THIS
 # Create your models here.
 
 class post(models.Model):
-    author  = models.ForeignKey(User , on_delete=models.CASCADE)
+    author  = models.ForeignKey(settings.AUTH_USER_MODEL , on_delete=models.CASCADE)
     image = models.ImageField(null=True , blank=True)
     title = models.CharField(max_length=220)
     content = models.TextField()
