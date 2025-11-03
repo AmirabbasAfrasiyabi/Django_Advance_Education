@@ -39,22 +39,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
-    # ADD THESE LINES TO FIX THE CLASH
-    groups = models.ManyToManyField(
-        'auth.Group',
-        verbose_name=_('groups'),
-        blank=True,
-        related_name='account_user_set',  # This fixes the clash
-        related_query_name='account_user',
-    )
-    user_permissions = models.ManyToManyField(
-        'auth.Permission',
-        verbose_name=_('user permissions'),
-        blank=True,
-        related_name='account_user_set',  # This fixes the clash
-        related_query_name='account_user',
-    )
-
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     
